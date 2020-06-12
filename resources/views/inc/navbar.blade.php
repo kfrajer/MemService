@@ -13,6 +13,9 @@
                     <a href="{{route('pages.index')}}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('pages.signin')}}" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('pages.about')}}" class="nav-link">About</a>
                 </li>
             </ul>
