@@ -1,0 +1,46 @@
+
+# Laravel command history - Project flow
+
+-----
+## Init: Laravel setup
+-----
+* Install PHP, for instance via LAMP: c:\wamp64\bin\php\php7.4.6
+* Install composer. Location: c:\Users\C\mySandBox\AppsBinFolder\php-composer\composer
+* Add php location to system path
+* set localcomposer=C:\Users\C\mySandBox\AppsBinFolder\php-composer\composer
+-----
+## Laravel project creation
+-----
+* Root folder: C:\wamp64\www\mpb\project\mpb-demo
+* set APPNAME=MemService
+* echo APPNAME: %APPNAME% & echo COMPOSER@: %localcomposer%
+* php %localcomposer% global require "laravel/installer"
+* Create project by either:
+   - laravel new %APPNAME%
+   - php %localcomposer% create-project laravel/laravel %APPNAME%
+   - cd %APPNAME%
+* php %localcomposer% install
+-----
+## Front End Install
+-----
+* php %localcomposer% require laravel/ui --dev
+* php artisan ui bootstrap
+* npm install && npm run dev
+-----
+## Init git
+-----
+* Create gitignore and exclude vendor, .env
+* Create this README as cmREADME.txt
+* git init
+
+
+
+
+
+* php artisan make:migration create_sqlconfigs_table
+* php artisan make:model SqlConfig
+* php artisan make:controller loginController --resource
+* php artisan make:controller menuStorageController --resource
+* php artisan make:controller SqlConfigsController --resource
+
+
