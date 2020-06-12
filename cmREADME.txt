@@ -51,7 +51,7 @@
 * php artisan serve --port=8008
 * php artisan make:controller PagesController
 * php artisan make:controller SessionController
-
+* php artisan route:list
 
 
 * php artisan make:migration create_memobjects_table
