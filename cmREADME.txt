@@ -7,13 +7,7 @@
 * Install PHP, for instance via LAMP: c:\wamp64\bin\php\php7.4.6
 * Install composer. Location: c:\Users\C\mySandBox\AppsBinFolder\php-composer\composer
 * Add php location to system path
-* doskey ls=dir $*
-* doskey gits=git status
-* doskey gitbr=git branch -a $1
-* doskey gitch=git checkout $1
-* doskey ccrun=php artisan serve --port=8008
-* doskey ccroutes=php artisan route:list
-* set localcomposer=C:\Users\C\mySandBox\AppsBinFolder\php-composer\composer
+* Run `bashrc.bat`
 -----
 ## Laravel project creation
 -----
