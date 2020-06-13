@@ -1,0 +1,32 @@
+body {
+    background-color: #c6e0F8;
+    font-family: 'Roboto', Arial, sans-serif;
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.disabled {
+    pointer-events:none; 
+    opacity:0.6; 
+}
+
+.ul-cc {
+    padding: 0;
+    margin: 0;
+}
+
+.li-item-cc {
+    font-size: 18px;
+    list-style-type: none;
+    height: 48px;
+    width: 100%;
+    color: rgba(0,0,0,0.63);
+    border-bottom: 1px dashed rgba(0,0,0,0.42);
+    display: flex;
+    align-items: center;
+}
