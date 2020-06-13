@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\MemObject;
+
 use Illuminate\Http\Request;
 
 class menuStorageController extends Controller
@@ -13,7 +15,10 @@ class menuStorageController extends Controller
      */
     public function index()
     {
-        //
+        $mobjs = MemObject::orderBy('created_at','desc')->paginate(8);
+        return view('memManager.index',[
+            'memobjs' => $mobjs,
+        ]);
     }
 
     /**

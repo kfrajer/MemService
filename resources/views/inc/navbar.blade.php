@@ -22,7 +22,7 @@
                     <a href="{{route('pages.signin')}}" class="nav-link">Sign in</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Menu</a>
+                    <a href="{{route('pages.tocPage')}}" class="nav-link">Menu</a>
                 </li>
                 <li class="nav-item">
                     <a href="/" target="_blank" class="nav-link">Docs</a>

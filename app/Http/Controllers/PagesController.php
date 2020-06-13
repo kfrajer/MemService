@@ -14,5 +14,9 @@ class PagesController extends Controller
         return view('pages.about');
     }
 
+    public function tocPage(){
+        return view('pages.toc-page');
+    }
+
     //Contact form
 }

@@ -13,7 +13,7 @@ class CreateMemobjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('memobjects', function (Blueprint $table) {
+        Schema::create('mem_objects', function (Blueprint $table) {
             $table->id();
             $table->string('name',128);
             $table->text('description');
@@ -36,6 +36,6 @@ class CreateMemobjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('memobjects');
+        Schema::dropIfExists('mem_objects');
     }
 }

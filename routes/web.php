@@ -17,8 +17,9 @@ Route::get('/','PagesController@index')->name('pages.index');
 Route::get('/about','PagesController@about')->name('pages.about');
 
 Route::get('/signin','SessionController@signin')->name('pages.signin');
+Route::get('/toc','PagesController@tocPage')->name('pages.tocPage');
 
-Route::resource('/memobjects','menuStorageController');
+Route::resource('/memManager','menuStorageController');
 //Route::get('/memobjects','menuStorageController@index')->name('memobjects.index');
 //Route::get('/memobjects/create','menuStorageController@create')->name('memobjects.create');
 //Route::post('/memobjects','menuStorageController@store')->name('memobjects.store'); // making a post request
