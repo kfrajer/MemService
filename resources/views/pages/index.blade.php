@@ -13,7 +13,7 @@
     <li class="li-item-cc">Set expiration dates on each resource</li>
     <li class="li-item-cc">Set resource to be accessed/used strictly once</li>
     <li class="li-item-cc">Access to Console UI or API</li>
-    <li class="li-item-cc">Check the <a href="#">quick start</a> guide or review our <a href="#">documentation</a></li>
+    <li class="li-item-cc">Check the <a href="#" class="a-padding-cc">quick start</a> guide or review our <a href="#" class="a-padding-cc">documentation</a></li>
     </ul>
 </div>
 @endsection
