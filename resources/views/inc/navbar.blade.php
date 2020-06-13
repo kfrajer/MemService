@@ -25,7 +25,7 @@
                     <a href="{{route('pages.tocPage')}}" class="nav-link">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/" target="_blank" class="nav-link">Docs</a>
+                    <a href="{{asset('published-zdocs/docs/index.html')}}" target="_blank" class="nav-link">Docs</a>
                 </li>
             
             </ul>
