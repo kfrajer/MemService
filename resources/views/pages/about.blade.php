@@ -1,7 +1,7 @@
 @extends('layout.pagecore')
 
 @section('title')
-Laravel 5.8 Basics | About Page
+{{ config('app.name', 'TBD') }} | About Page
 @endsection
 
 @section('content')
