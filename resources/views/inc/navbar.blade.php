@@ -25,6 +25,12 @@
                     <a href="{{route('pages.tocPage')}}" class="nav-link">Menu</a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('memManager.index')}}" class="nav-link">Show</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('memManager.create')}}" class="nav-link">New item</a>
+                </li>
+                <li class="nav-item">
                     <a href="{{asset('published-zdocs/docs/index.html')}}" target="_blank" class="nav-link">Docs</a>
                 </li>
             

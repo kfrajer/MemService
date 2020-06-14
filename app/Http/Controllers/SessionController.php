@@ -11,4 +11,6 @@ class SessionController extends Controller
     }
 
     //Sign Up
+
+    //Sign out
 }

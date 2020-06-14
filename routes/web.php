@@ -20,11 +20,11 @@ Route::get('/signin','SessionController@signin')->name('pages.signin');
 Route::get('/toc','PagesController@tocPage')->name('pages.tocPage');
 
 Route::resource('/memManager','menuStorageController');
-//Route::get('/memobjects','menuStorageController@index')->name('memobjects.index');
-//Route::get('/memobjects/create','menuStorageController@create')->name('memobjects.create');
-//Route::post('/memobjects','menuStorageController@store')->name('memobjects.store'); // making a post request
-//Route::get('/memobjects/{id}','menuStorageController@show')->name('memobjects.show');
-//Route::get('/memobjects/{id}/edit','menuStorageController@edit')->name('memobjects.edit');
-//Route::put('/memobjects/{id}','menuStorageController@update')->name('memobjects.update'); // making a put request
-//Route::delete('/memobjects/{id}','menuStorageController@destroy')->name('memobjects.destroy'); // making a delete request
+//Route::get('/memobjects','menuStorageController@index')->name('memManager.index');
+//Route::get('/memobjects/create','menuStorageController@create')->name('memManager.create');
+//Route::post('/memobjects','menuStorageController@store')->name('memManager.store'); // making a post request
+//Route::get('/memobjects/{id}','menuStorageController@show')->name('memManager.show');
+//Route::get('/memobjects/{id}/edit','menuStorageController@edit')->name('memManager.edit');
+//Route::put('/memobjects/{id}','menuStorageController@update')->name('memManager.update'); // making a put request
+//Route::delete('/memobjects/{id}','menuStorageController@destroy')->name('memManager.destroy'); // making a delete request
 
