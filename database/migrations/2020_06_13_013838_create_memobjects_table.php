@@ -17,14 +17,14 @@ class CreateMemobjectsTable extends Migration
             $table->id();
             $table->string('name',128);
             $table->text('description');
-            $table->enum('type',array('text/plain','text/html','text/csv','text/css','text/xml','application/javascript','application/pdf','application/octet-stream','application/json','application/zip','application/x-www-form-urlencoded','image/gif','image/jpeg','image/png','image/tiff','image/svg+xml','multipart/mixed','multipart/form-data'));
+            $table->enum('type',config('memobjsettings.mem_obj_allowed_types'));
             $table->string('uri',256);
             //$table->binary('data');
             $table->integer('ttl');
             $table->string('tags',64);
             $table->string('acl',64);
-            $table->softDeletes('deleted_at', 0);
             $table->boolean('useOnlyOnce');
+            $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });
     }
