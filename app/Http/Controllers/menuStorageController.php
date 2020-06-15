@@ -49,50 +49,8 @@ class menuStorageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //validation rules and validation custom messages
-        $rules = [
-            'name' => 'required|string|unique:mem_objects,name|min:2|max:191',
-            'description'  => 'required|string|min:5|max:1000',
-            'ttl' => 'nullable|numeric|min:0|digits_between:0,8'
-        ];
-        $messages = [
-            'title.unique' => 'Todo title should be unique', //syntax: field_name.rule
-        ];
-        $request->validate($rules,$messages);
-        
-        $item = new MemObject;
-        $item->name = $request->name;
-        $item->description = $request->description;
-        $item->type = isset($request->type) ? $request->type : 'text/plain';
-        $item->uri = isset($request->uri) ? $request->uri : '';
-        $item->ttl = isset($request->ttl) ? $request->ttl : 0;
-        $item->tags = isset($request->tags) ? $request->tags : '';
-        $item->acl = isset($request->acl) ? $request->acl : 'allUsers';
-        $item->useOnlyOnce = $request->has('useOnlyOnce');
-        $item->save(); 
-        //Redirect to a specified route with flash message.
-        return redirect()
-            ->route('memManager.index')
-            ->with('status','Created a new entry!');
-
-        /**
-         * ACCESSING form values options
-         * --------------
-         * $request->input('field_name'); // access an input field
-         * $request->has('field_name'); // check if field exists
-         * $request->title; // dynamically access input fields
-         * request('key') // you can use this global helper if needed inside a view
-        */
-
-                /**
-         * REDIRECTION methods helpers
-         * --------------
-         * return redirect('/todos'); // to a specific url
-         * return redirect(url('/todos')); // to a specific url with url helper
-         * return redirect(url()->previous()); // to a previous url
-         * return redirect()->back(); // redirect back (same as above) 
-        */
+    {        
+        return self::UpdateOrStore($request, 'create', -1);
     }
 
     /**
@@ -103,7 +61,16 @@ class menuStorageController extends Controller
      */
     public function show($id)
     {
-        //
+        $mobj = MemObject::findOrFail($id);
+        return view('memManager.show', [
+            'memobj' => $mobj,
+        ]);
+
+        /**
+         * SEARCHING for value in a specific column
+         * --------------
+         * $todo = Todo::where('title','this is title')->firstOrFail();
+        */
     }
 
     /**
@@ -114,7 +81,10 @@ class menuStorageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mobj = MemObject::findOrFail($id);
+        return view('memManager.edit',[
+            'memobj' => $mobj,
+        ]);
     }
 
     /**
@@ -125,8 +95,8 @@ class menuStorageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {        
+        return self::UpdateOrStore($request, 'update', $id);
     }
 
     /**
@@ -137,6 +107,78 @@ class menuStorageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mobj = MemObject::findOrFail($id);
+        $mobj->delete();
+        
+        return redirect()
+            ->route('memManager.index')
+            ->with('status','Item was deleted!');
+    }
+
+
+    /**
+     * UpdateOrStore a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param String $op: Either create or update
+     * @param numeric $id: For updating, -1 otherwise
+     * @return \Illuminate\Http\Response
+     */
+    public function UpdateOrStore($request, $op, $id = NULL)
+    {
+        //validation rules and validation custom messages
+        $rules = [
+            'name' => "required|string|unique:mem_objects,name,{$id}|min:2|max:191",
+            'description'  => 'required|string|min:5|max:1000',
+            'ttl' => 'nullable|numeric|min:0|digits_between:0,8'
+        ];
+        $messages = [
+            'title.unique' => 'Todo title should be unique', //syntax: field_name.rule
+        ];
+        $request->validate($rules,$messages);
+
+        if ( $op == "create"){
+            $item = new MemObject;          
+            $strView='memManager.index';
+            $strStatus='Created a new entry!';
+            $arg='';
+        }else{
+            $item = MemObject::findOrFail($id);         
+            $strView='memManager.show';
+            $strStatus='The entry was updated!!';
+            $arg=$id;
+        }        
+        
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->type = isset($request->type) ? $request->type : 'text/plain';
+        $item->uri = isset($request->uri) ? $request->uri : '';
+        $item->ttl = isset($request->ttl) ? $request->ttl : 0;
+        $item->tags = isset($request->tags) ? $request->tags : '';
+        $item->acl = isset($request->acl) ? $request->acl : 'allUsers';
+        $item->useOnlyOnce = $request->has('useOnlyOnce') ? 1 : 0;
+        $item->save(); 
+        //Redirect to a specified route with flash message.
+        return redirect()
+            ->route($strView, $arg)
+            ->with('status', $strStatus);
+
+        /**
+         * ACCESSING form values options
+         * --------------
+         * $request->input('field_name'); // access an input field
+         * $request->has('field_name'); // check if field exists
+         * $request->title; // dynamically access input fields
+         * request('key') // you can use this global helper if needed inside a view
+        */
+
+        /**
+         * REDIRECTION methods helpers
+         * --------------
+         * return redirect('/todos'); // to a specific url
+         * return redirect(url('/todos')); // to a specific url with url helper
+         * return redirect(url()->previous()); // to a previous url
+         * return redirect()->back(); // redirect back (same as above) 
+        */
     }
 }
