@@ -9,4 +9,8 @@ class SessionController extends Controller
     public function signin(){
         return view('pages.signin');
     }
+
+    //Sign Up
+
+    //Sign out
 }
