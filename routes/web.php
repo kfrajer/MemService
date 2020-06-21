@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','PagesController@index')->name('pages.index');
 Route::get('/about','PagesController@about')->name('pages.about');
 
 Route::get('/signin','SessionController@signin')->name('pages.signin');
@@ -28,3 +27,38 @@ Route::resource('/memManager','menuStorageController');
 //Route::put('/memobjects/{id}','menuStorageController@update')->name('memManager.update'); // making a put request
 //Route::delete('/memobjects/{id}','menuStorageController@destroy')->name('memManager.destroy'); // making a delete request
 
+Route::get('/','HomeController@index');
+Route::get('/home', 'HomeController@index')->name('pages.index');
+//Route::get('/home', 'PagesController@index')->name('pages.index')->middleware('verified');
+
+//Helper class that generates all the routes required for user authentication
+//Summary of routes generated below
+Auth::routes(['verify' => true]);
+
+/**
+ * Login Route(s)
+ */
+//Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+//Route::post('login', 'Auth\LoginController@login');
+//Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+/**
+ * Register Route(s)
+ */
+//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+//Route::post('register', 'Auth\RegisterController@register');
+
+/**
+ * Password Reset Route(S)
+ */
+//Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+//Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+//Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+//Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+/**
+ * Email Verification Route(s)
+ */
+//Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+//Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+//Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
