@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 class menuStorageController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // This will also block access to unverified authenticated users.
+        $this->middleware(['auth','verified']);
+    } 
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
