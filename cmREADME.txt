@@ -1,4 +1,5 @@
 
+# Laravel MemService: multi-model storage support and with docs powered by Hugo Zdoc template
 # Laravel command history - Project flow
 
 -----
@@ -27,6 +28,11 @@
 * php artisan ui bootstrap
 * npm install && npm run dev
 -----
+## Artisan helper CLI commands
+-----
+* php artisan route:list
+* php artisan route:list --name|path|method=
+-----
 ## Init git
 -----
 * Verify gitignore exists and it is excluding vendor and .env vars
@@ -38,7 +44,7 @@
 * git config --global mergetool.meld.cmd "meld $LOCAL $MERGED $REMOTE -output $MERGED"
 * git init
 -----
-## Adding content following versioning branch: feature/step1
+## Adding content following versioning branch: feature/step1 => Init project, added non-DB views+controllers
 -----
 * See detail #1: Laravel App Definition
 * See detail #2: Laravel project layout and git branching
@@ -47,10 +53,10 @@
 * php artisan serve --port=8008
 * php artisan make:controller PagesController
 * php artisan make:controller SessionController
-* php artisan route:list
 -----
-## Adding content following versioning branch: feature/step2
+## Adding content following versioning branch: feature/step2 => Migration, CRUD ops
 -----
+* git checkout -b feature/step2
 * Create a user with certain privileges on database for all tables
 * REFERENCE: https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql
 * Start a MySQL shell. In lamp, navigate to mysql's bin folder: `mysql -uroot -p`
@@ -69,7 +75,26 @@
 * Helper functions, reference links:
   - https://laracasts.com/discuss/channels/laravel/useful-blade-directives
   - https://stackoverflow.com/questions/47326487/pass-variable-from-custom-laravel-helpers-to-blade-file
+-----
+## Adding content following versioning branch: feature/step3 => Authentication with email verification, pwd reset
+-----
+* git checkout -b feature/step3
+* See detail 6 for auth scaffolding for a laravel project
+* php artisan ui bootstrap --auth
+* php artisan migrate
+* These adds new routes, a controller and all auth views
+* Definition of middlewares. It can be applied at the controller level or during route definition
+  - @ Controller: `$this->middleware()` inside a constructor
+  - @ route: Chain `middleware()` method to route definition
+  - In case of multiple middlewares and multiple method exceptions:
+    `$this->middleware(['...', '...']])->except(['...', '...']);`
+* Access to resources now restricted to either (verified) authorized vs. guest users
+* MailTrap app setup to test "send verification email" and password reset" flows
+* To configure mail settings, define mail provider settings in `.env`, adjust `mail.php` config file
 
+
+
+## =======================================================================================
 
 ## Detail #1: Laravel App Definition
  * This project collects data of different formats
@@ -136,7 +161,21 @@
 * More on Laravel's naming convention: 
   https://webdevetc.com/blog/laravel-naming-conventions
 
-
+## Detail #6: Auth scaffolding for a Laravel project
+* Laravel projects do not come with the auth scaffolding pre-installed. Versions 
+  previous to 6.0, auth scaffolding is installed via `php artisan make:auth`.
+* For Laravel >6.0, you need to installed your FE (vue, react or bootstrap) and then 
+  install the auth scaffolding running `php artisan ui bootstrap --auth`. This 
+  creates all the views in resources/views directory and add routes in our wep.app 
+  routes file
+* REFERENCE:
+  https://medium.com/@panjeh/laravel-auth-routes-email-verification-reset-password-authentication-registration-routes-fb82b3337150
+* The auth scaffolding add changes to web.php routes files, adds the HomeController and views for: 
+  - Login, register, getting verification email
+  - Password: email, confirm, reset
+  - Home and app layout
+  - This is explained in detailed here: 
+    https://medium.com/@panjeh/laravel-changes-in-php-artisan-ui-auth-php-artisan-make-auth-82fdb8893726
 
 
 
@@ -148,5 +187,10 @@
   To do
   * Implement soft softDeletes
   * Display content type as select field
-  * Evaluate adding content, dataBlob, user-agent
+  * Add migration seeding
+  * Evaluate adding the following fields: content, dataBlob, user-agent
   * Move content type mem object to its own DB. See discussion: https://stackoverflow.com/questions/25705878/where-to-put-how-to-handle-enums-in-laravel
+  * Remove pages.Login (redundant as laravel provides a user login view)
+  * Fix layout vs. layouts
+  * dashboard to toc
+  * homecontroller set to home, rename pages.index to home, disable index entry as 404

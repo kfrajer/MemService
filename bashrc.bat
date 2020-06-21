@@ -5,7 +5,8 @@ REM -----------------------------------------------------------
 doskey gits=git status
 doskey gitcbr=git rev-parse --abbrev-ref HEAD
 doskey gitbr=git branch -a $1
-doskey gitch=git checkout $1
+doskey gitch=git checkout $*
+doskey gitcm=git commit -m $1
 doskey gitlogs=git log --pretty=oneline --abbrev-commit
 doskey gdif=git diff $*
 REM -----------------------------------------------------------
